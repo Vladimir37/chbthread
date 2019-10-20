@@ -1,0 +1,33 @@
+{
+  "name": "chbthread",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chbthread.js",
+  "dependencies": {
+    "joi": "^14.3.1",
+    "joi-objectid": "^3.0.1",
+    "koa": "^2.10.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa-passport": "^4.1.3",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.12.3",
+    "md5": "^2.2.1",
+    "mongoose": "^5.7.5",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vladimir37/chbthread.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vladimir37/chbthread/issues"
+  },
+  "homepage": "https://github.com/Vladimir37/chbthread#readme"
+}
