@@ -4,6 +4,7 @@
   "description": "",
   "main": "chbthread.js",
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "joi": "^14.3.1",
     "joi-objectid": "^3.0.1",
     "koa": "^2.10.0",

@@ -2,6 +2,7 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const session = require('koa-session');
 const json = require('koa-json');
+const cors = require('@koa/cors');
 const config = require('./config');
 const Router = require('./router/index');
 const passport = require('./assets/passport');
@@ -13,6 +14,8 @@ app.use(session({}, app));
 app.use(bodyParser());
 
 app.use(json());
+
+app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
