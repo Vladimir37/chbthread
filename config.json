@@ -1,4 +1,6 @@
 {
     "port": 3000,
-    "db": "mongodb://localhost/chbthread"
+    "db": "mongodb://localhost/chbthread",
+    "session_key": "secret",
+    "captcha_key": "test"
 }
