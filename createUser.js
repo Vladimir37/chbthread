@@ -15,7 +15,6 @@ function creating() {
         status: 0,
         login: login,
         pass: md5(pass),
-        active: true,
     });
 
     models.UserModel.findOne({

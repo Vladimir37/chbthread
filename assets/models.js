@@ -8,7 +8,7 @@ let db = mongoose.connect(config.db);
 let models = {};
 
 const User = new Schema({
-    status: String,
+    status: Number,
     login: String,
     pass: String,
 });
