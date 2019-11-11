@@ -14,4 +14,17 @@ const User = new Schema({
 });
 models.UserModel = mongoose.model('User', User);
 
+const Profile = new Schema({
+    city: String,
+    gender: Number,
+    age: Number,
+    targetGender: Number,
+    aboutMe: String,
+    aboutTarget: String,
+    contacts: String,
+    date: Date,
+    deleteCode: String,
+});
+models.ProfileModel = mongoose.model('Profile', Profile);
+
 module.exports = models;
