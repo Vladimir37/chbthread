@@ -11,7 +11,9 @@ const ProfileControllers = {
         profiles = profiles.map(elem => {
             elem.deleteCode = '';
             return elem;
-        })
+        });
+
+        profiles = profiles.sort((a, b) => b.date.getTime() - a.date.getTime());
 
         ctx.body = {
             success: true,
@@ -65,7 +67,33 @@ const ProfileControllers = {
         };
     },
     async removeByCode(ctx) {
-        //
+        const captcha = ctx.request.body.captcha;
+        const captchaResult = ctx.captcha.verify(config.captcha_key, captcha);
+        
+        ctx.captcha.refresh(config.captcha_key, 5 * 60 * 1000);
+        if (!captchaResult) {
+            ctx.body = { 
+                success: false,
+            }
+            ctx.throw(401, 'captcha');
+            return;
+        }
+
+        let deleteCode = ctx.request.body.code;
+        let targetProfile = await models.ProfileModel.findOne({
+            deleteCode,
+        });
+
+        if (!targetProfile) {
+            ctx.throw(401, 'incorrect_code');
+            return;
+        }
+
+        await targetProfile.remove();
+        
+        ctx.body = {
+            success: true,
+        };
     },
     async removeByAdmin(ctx) {
         //
