@@ -6,7 +6,13 @@ const tokenGenerator = randomToken.create('0123456789');
 
 const ProfileControllers = {
     async getAllProfiles(ctx) {
-        let profiles = await models.ProfileModel.find();
+        const yearsAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
+
+        let profiles = await models.ProfileModel.find({
+            date: {
+                $gt: yearsAgo,
+            }
+        });
 
         profiles = profiles.map(elem => {
             elem.deleteCode = '';
@@ -21,7 +27,25 @@ const ProfileControllers = {
         };
     },
     async getArchive(ctx) {
-        //
+        const yearsAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
+
+        let profiles = await models.ProfileModel.find({
+            date: {
+                $lte: yearsAgo,
+            }
+        });
+
+        profiles = profiles.map(elem => {
+            elem.deleteCode = '';
+            return elem;
+        });
+
+        profiles = profiles.sort((a, b) => b.date.getTime() - a.date.getTime());
+
+        ctx.body = {
+            success: true,
+            body: profiles,
+        };
     },
     async createProfile(ctx) {
         const captcha = ctx.request.body.captcha;
