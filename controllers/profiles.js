@@ -120,7 +120,19 @@ const ProfileControllers = {
         };
     },
     async removeByAdmin(ctx) {
-        //
+        let targetProfileId = ctx.request.body.id;
+        let targetProfile = await models.ProfileModel.findById(targetProfileId);
+
+        if (!targetProfile) {
+            ctx.throw(401, 'incorrect_id');
+            return;
+        }
+
+        await targetProfile.remove();
+        
+        ctx.body = {
+            success: true,
+        };
     }
 };
 
