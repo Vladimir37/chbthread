@@ -1,5 +1,6 @@
 const randomToken = require('random-token');
 const models = require('../assets/models');
+const profileValidator = require('../assets/profileValidator');
 const config = require('../config');
 
 const tokenGenerator = randomToken.create('0123456789');
@@ -82,6 +83,14 @@ const ProfileControllers = {
             date: new Date(),
             deleteCode: deleteCode,
         };
+
+        if (!profileValidator(profileObj)) {
+            ctx.body = { 
+                success: false,
+            }
+            ctx.throw(401, 'incorrect_data');
+            return;
+        }
 
         await models.ProfileModel.create(profileObj);
 
